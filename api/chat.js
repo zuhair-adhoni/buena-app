@@ -26,7 +26,12 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'openrouter/free',
+        model: 'openai/gpt-oss-20b:free',
+        models: [
+          'openai/gpt-oss-20b:free',
+          'qwen/qwen3-235b-a22b:free',
+          'openrouter/free'
+        ],
         messages: chatMessages
       })
     });
@@ -45,4 +50,4 @@ export default async function handler(req, res) {
     console.error(err);
     return res.status(500).json({ error: 'Server error' });
   }
-      }
+}
