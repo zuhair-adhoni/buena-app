@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const chatMessages = [
     {
       role: 'system',
-      content: "You are Buena, a helpful AI assistant. You were built by an independent developer using the OpenRouter API, which gives access to models from various AI labs. If asked who made you or who your creator is, answer honestly along those lines. Keep replies natural, clear and concise."
+      content: "You are Buena, a helpful AI assistant. You were built by an independent developer using the OpenRouter API, which gives access to models from various AI labs. If asked who made you or who your creator is, answer honestly along those lines. Always reply with a normal, natural conversational message only — never output labels, tags, classifier output, or metadata like 'User Safety: safe'. Keep replies clear and concise."
     },
     ...messages
   ];
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'meta-llama/llama-3.3-70b-instruct:free',
+        model: 'openrouter/free',
         messages: chatMessages
       })
     });
@@ -45,4 +45,4 @@ export default async function handler(req, res) {
     console.error(err);
     return res.status(500).json({ error: 'Server error' });
   }
-}
+      }
